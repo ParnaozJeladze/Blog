@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<title>Home Page</title>
+<style>
+
+    .blog-container {
+        background-color: white;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 ">
+            <h2 class="text-center mb-4">Welcome to BlogNest</h2>
+            <p class="text-center">
+                BlogNest is your go-to destination for insightful articles, creative musings, and engaging blog content.
+                Explore a plethora of topics, from tech trends to lifestyle hacks, curated just for you.
+            </p>
+            <h2 class="text-center mb-3">Latest Blogs</h2>
+            <div class="row">
+                <div class="content-container">
+                    {% for blog in latest_blogs %}
+                    <div class="container shadow mb-4 mt-2 blog-container">
+                        <h2>{{ blog.title }}</h2>
+                        <p>{{ blog.content }}</p>
+                        {% if blog.img %}
+                        <img src="/static/{{ blog.img }}" style="max-width: 100%; margin-bottom: 20px;">
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="text-center ">
+                <a href="/" class="btn btn-primary">View All Blogs</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+

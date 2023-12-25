@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<title>Add Blog </title>
+<style>
+    .container {
+        width: 40%;
+        border-radius: 20px;
+        padding: 10px;
+    }
+
+    input[type="text"],
+    textarea,
+    input[type="file"] {
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px black solid;
+    }
+</style>
+
+<div class="container d-flex justify-content-center align-items-center text-center shadow mt-4" style="background-color: #FFFFFF;">
+    <form method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-1 row ">
+            <label class="form-label text-start ">Title</label>
+            <div class="col-11">
+                {{ form.title(class="form-control form-control-lg") }}
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label class="form-label text-start">Content</label>
+            <div class="col-11">
+                {{ form.content(class="form-control") }}
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label class="form-label text-start">Choose your photo</label>
+            <div class="col-11">
+                {{ form.img(class="form-control") }}
+            </div>
+        </div>
+
+        {{ form.submit(class="btn btn-success mt-1 mb-4") }}
+    </form>
+</div>
+{% endblock %}

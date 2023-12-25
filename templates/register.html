@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+<title>Register Page</title>
+<style>
+    body
+    {
+    background-image:url({{url_for("static",filename="login-page-bg.jpg")}})
+    }
+    .container {
+        width: 30%;
+        border-radius: 20px;
+        padding: 10px;
+
+    }
+
+    .custom-btn {
+        background-color: #ff1493;
+        color: white;
+        width: 100%;
+        transition: background-color 0.3s;
+    }
+
+    .custom-btn:hover,
+    .custom-btn:focus {
+        background-color: #ff1493;
+    }
+     input[type="text"],
+    input[type="password"] {
+        border: 1px black solid;
+    }
+</style>
+
+<div class="container d-flex flex-column justify-content-center align-items-center text-center shadow mt-5"
+     style="background-color: white ">
+    {% for field, errors in form.errors.items() %}
+        {% for error in errors %}
+        <div class="alert alert-danger">
+            {{ error }}
+        </div>
+        {% endfor %}
+    {% endfor %}
+
+    {% for error in db_errors %}
+        <div class="alert alert-danger">
+            {{ error }}
+        </div>
+    {% endfor %}
+    <h3 class="mb-3 me-4">Register</h3>
+    <form method="post">
+        {{ form.hidden_tag() }}
+
+        <div class="mb-3 row">
+            <label class="form-label text-start">Username</label>
+            <div class="col-sw-12">
+                {{ form.username(class="form-control form-control-lg") }}
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="form-label text-start">Email</label>
+            <div class="col-sw-12">
+                {{ form.email(class="form-control form-control-lg") }}
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label class="form-label text-start">Password</label>
+            <div class="col-sm-12">
+                {{ form.password(class="form-control form-control-lg") }}
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label class="form-label text-start">Repeat Password</label>
+            <div class="col-sm-12">
+                {{ form.repeat_password(class="form-control form-control-lg") }}
+            </div>
+        </div>
+        <button type="submit" class="btn custom-btn btn-lg mt-3 mb-3">Register</button>
+    </form>
+</div>
+
+
+{% endblock %}
+
+<!--, placeholder=form.username.label.text)-->
+<!--# border: 1px solid  Gray-->
