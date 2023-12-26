@@ -9,14 +9,15 @@ from werkzeug.datastructures.file_storage import FileStorage
 
 
 @app.route("/")
-def web():
-    blogs = Blog.query.all()
-    return render_template("blogs.html", blogs=blogs)
-
-@app.route("/home")
 def home():
     latest_blogs = Blog.query.order_by(Blog.id.desc()).limit(2).all()
     return render_template("home.html", latest_blogs=latest_blogs)
+
+
+@app.route("/blogs")
+def web():
+    blogs = Blog.query.all()
+    return render_template("blogs.html", blogs=blogs)
 
 
 @app.route("/addblog", methods=["GET", "POST"])
@@ -105,14 +106,8 @@ def register():
 def logout():
     logout_user()
     return redirect("/")
-# title="Reset Request",
-# @app.route("/search/<string:name>")
-# def search(name):
-#     blog = Blog.query.filter()
-#     return render_template("about.html")
-# @app.route("/reset_password", methods=["GET", "POST"])
-# def reset_request():
-#     form = ResetRequestForm()
-#     if form.validate_on_submit():
-#         print("Reset request sent. Check your mail.", "success")
-#     return render_template("reset_request.html",  form=form)
+
+
+@app.route("/account")
+def account():
+    return render_template("account.html")
